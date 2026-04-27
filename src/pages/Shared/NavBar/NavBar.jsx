@@ -5,7 +5,7 @@ import { NavLink } from 'react-router';
 const NavBar = () => {
     const links = <>
         <li><NavLink to={""} className={'text-[#606060] font-medium'}>Services</NavLink></li>
-        <li><NavLink to={""} className={'text-[#606060] font-medium'}>Coverage</NavLink></li>
+        <li><NavLink to="coverage" className={'text-[#606060] font-medium'}>Coverage</NavLink></li>
         <li><NavLink to={""} className={'text-[#606060] font-medium'}>About Us</NavLink></li>
         <li><NavLink to={""} className={'text-[#606060] font-medium'}>Pricing</NavLink></li>
         <li><NavLink to={""} className={'text-[#606060] font-medium'}>Blog</NavLink></li>

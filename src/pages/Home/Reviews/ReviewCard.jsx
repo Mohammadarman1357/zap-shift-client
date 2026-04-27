@@ -8,30 +8,30 @@ const ReviewCard = ({ review }) => {
             <div className="bg-base-100 p-8 rounded-3xl shadow-sm">
 
                 {/* Quote Icon */}
-                <FaQuoteLeft className="text-teal-200 text-4xl mb-4" />
+                <FaQuoteLeft className="text-[#C3DFE2] text-4xl mb-4" />
 
                 {/* Text */}
-                <p className="text-gray-600 leading-relaxed text-lg">
+                <p className="mb-4">
                     {testimonial}
                 </p>
 
                 {/* Divider */}
-                <div className="border-t-2 border-dashed border-teal-200 my-6"></div>
+                <div className="border-t-2 border-dashed border-secondary my-6"></div>
 
                 {/* User Info */}
                 <div className="flex items-center gap-4">
                     {/* Avatar */}
-                    <div className="w-14 h-14 rounded-full bg-teal-800 flex items-center justify-center">
+                    <div className="w-14 h-14 rounded-full flex items-center justify-center">
                         <img src={user_photoURL} alt="" />
                     </div>
 
                     {/* Name + Role */}
                     <div>
-                        <h3 className="text-lg font-semibold text-teal-900">
+                        <h3 className="text-lg font-semibold text-secondary">
                             {userName}
                         </h3>
-                        <p className="text-gray-500 text-sm">
-                            Senior Product Designer
+                        <p className="text-[#606060] text-sm">
+                            Senior Product Designer 
                         </p>
                     </div>
                 </div>
