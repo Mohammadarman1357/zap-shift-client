@@ -1,8 +1,21 @@
 import React from 'react';
 import Logo from '../../../components/Logo/Logo';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
+import useAuth from '../../../hooks/useAuth';
+import { BsArrowUpRightCircleFill } from 'react-icons/bs';
 
 const NavBar = () => {
+
+    const { user, logOut } = useAuth();
+
+    const handleLogOut = () => {
+        logOut()
+            .then()
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
     const links = <>
         <li><NavLink to={""} className={'text-[#606060] font-medium'}>Services</NavLink></li>
         <li><NavLink to="coverage" className={'text-[#606060] font-medium'}>Coverage</NavLink></li>
@@ -12,7 +25,7 @@ const NavBar = () => {
         <li><NavLink to={""} className={'text-[#606060] font-medium'}>Contact</NavLink></li>
     </>
     return (
-        <div className="navbar bg-base-100 shadow-sm md:py-5 md:px-6">
+        <div className="navbar bg-base-100 shadow-sm md:py-5 md:px-6 rounded-br-2xl rounded-bl-2xl">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -25,7 +38,7 @@ const NavBar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">
+                <a className="">
                     <Logo></Logo>
                 </a>
             </div>
@@ -35,7 +48,15 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                {
+                    user ?
+                        <a
+                            onClick={handleLogOut}
+                            className="btn hover:btn-primary btn-outline btn-[#606060] text-[#606060] rounded-xl">LogOut</a>
+                        : <Link to="/login" className="btn hover:btn-primary btn-outline btn-[#606060] rounded-xl text-[#606060]">Login</Link>
+                }
+                <Link to="/rider" className="btn btn-primary text-secondary rounded-xl ml-4 mr-2">Be a Rider</Link>
+                <Link to="/rider"><BsArrowUpRightCircleFill className='text-secondary text-4xl'></BsArrowUpRightCircleFill></Link>
             </div>
         </div>
     );
