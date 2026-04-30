@@ -21,7 +21,7 @@ const NavBar = () => {
         <li><NavLink to="coverage" className={'text-[#606060] font-medium'}>Coverage</NavLink></li>
         <li><NavLink to={""} className={'text-[#606060] font-medium'}>About Us</NavLink></li>
         <li><NavLink to={""} className={'text-[#606060] font-medium'}>Pricing</NavLink></li>
-        <li><NavLink to={""} className={'text-[#606060] font-medium'}>Blog</NavLink></li>
+        <li><NavLink to={"/sendParcel"} className={'text-[#606060] font-medium'}>Send Parcel</NavLink></li>
         <li><NavLink to={""} className={'text-[#606060] font-medium'}>Contact</NavLink></li>
     </>
     return (
