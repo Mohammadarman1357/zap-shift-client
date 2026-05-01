@@ -9,8 +9,7 @@ const reviewsPromise = fetch('/public/json/reviews.json').then(res => res.json()
 
 const Home = () => {
     return (
-        <div className='mx-5 md:mx-15 space-y-10'>
-            <h2>This is Home</h2>
+        <div className='mx-5 md:mx-15 space-y-10 mt-5'>
             <Banner></Banner>
             <WorkSection></WorkSection>
             <OurServices></OurServices>

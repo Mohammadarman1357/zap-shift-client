@@ -2,9 +2,21 @@ import React from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAuth from '../../hooks/useAuth';
 
 const SendParcel = () => {
-    const { register, handleSubmit, control, formState: { errors } } = useForm();
+    const {
+        register,
+        handleSubmit,
+        control,
+        // formState: { errors }
+    } = useForm();
+
+    const { user } = useAuth();
+
+    const axiosSecure = useAxiosSecure();
+
     const serviceCenters = useLoaderData();
     const regionsDuplicate = serviceCenters.map(c => c.region);
     const regions = [...new Set(regionsDuplicate)];
@@ -51,15 +63,19 @@ const SendParcel = () => {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, Confirm!"
         }).then((result) => {
-            if (result.isConfirmed) Swal.fire({
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Confirmed!",
+                    text: "Your Parcel has been confirmed.",
+                    icon: "success"
+                })
 
-                // confirmed 
-                
-
-                title: "Confirmed!",
-                text: "Your Parcel has been confirmed.",
-                icon: "success"
-            });
+                // confirmed. save the parcel info to the database
+                axiosSecure.post('/parcels', data)
+                    .then(res => {
+                        console.log('after saving parcel', res.data);
+                    })
+            };
         });
 
     }
@@ -110,10 +126,14 @@ const SendParcel = () => {
                         <fieldset className="fieldset">
                             {/* Sender name */}
                             <label className="label font-bold text-black">Sender Name</label>
-                            <input type="text" {...register('senderName')} className="input w-full" placeholder="Sender Name" />
+                            <input type="text" {...register('senderName')}
+                                defaultValue={user?.displayName}
+                                className="input w-full" placeholder="Sender Name" />
                             {/* Sender Email */}
                             <label className="label font-bold text-black">Sender Email</label>
-                            <input type="email" {...register('senderEmail')} className="input w-full" placeholder="Sender Email" />
+                            <input type="email" {...register('senderEmail')}
+                                defaultValue={user?.email}
+                                className="input w-full" placeholder="Sender Email" />
 
                             {/* Sender Region */}
                             <fieldset className="fieldset">
