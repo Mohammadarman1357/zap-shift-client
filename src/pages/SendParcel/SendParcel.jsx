@@ -53,6 +53,7 @@ const SendParcel = () => {
             }
         }
         console.log('cost', cost);
+        data.cost = cost;   // cost ta patacci
 
         Swal.fire({
             title: "Agree with the cost?",
