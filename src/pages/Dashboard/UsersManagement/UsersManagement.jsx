@@ -1,18 +1,58 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { FaUserShield, FaUserSlash } from 'react-icons/fa';
+import { FiShieldOff } from 'react-icons/fi';
+import Swal from 'sweetalert2';
 
 const UsersManagement = () => {
     const axiosSecure = useAxiosSecure();
 
     // data load
-    const { data: users = [] } = useQuery({
+    const { refetch, data: users = [] } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/users`);
             return res.data;
         }
     })
+
+    const handleMakeUser = user => {
+        const roleInfo = { role: 'admin' };
+        axiosSecure.patch(`/users/${user._id}`, roleInfo)
+            .then(res => {
+                if (res.data.modifiedCount) {
+                    // refresh data
+                    refetch();
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: `${user.displayName} marked as an Admin`,
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }
+                console.log(res.data)
+            })
+    }
+
+    const handleRemoveAdmin = user => {
+        const roleInfo = { role: 'user' };
+        axiosSecure.patch(`/users/${user._id}`, roleInfo)
+            .then(res => {
+                if (res.data.modifiedCount) {
+                    // refresh data
+                    refetch();
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: `${user.displayName} removed from Admin`,
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }
+            })
+    }
 
     return (
         <div className='p-5 md:p-10 space-y-5 bg-white rounded-3xl m-2 md:m-6'>
@@ -24,9 +64,10 @@ const UsersManagement = () => {
                     <thead>
                         <tr>
                             <th>SL No.</th>
-                            <th>Name</th>
+                            <th>User</th>
                             <th>Email</th>
-                            <th>Admin</th>
+                            <th>Role</th>
+                            <th>Admin Action</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -50,9 +91,20 @@ const UsersManagement = () => {
                                     </td>
                                     <td>{user.email}</td>
                                     <td>{user.role}</td>
-                                    <th>
+                                    <td>
+                                        {
+                                            user.role === 'admin' ?
+                                                <button
+                                                    onClick={() => handleRemoveAdmin(user)}
+                                                    className='btn bg-red-500'><FiShieldOff></FiShieldOff></button> :
+                                                <button
+                                                    onClick={() => handleMakeUser(user)}
+                                                    className='btn bg-primary text-secondary'><FaUserShield></FaUserShield></button>
+                                        }
+                                    </td>
+                                    <td>
                                         <button className="btn btn-ghost btn-xs">Actions</button>
-                                    </th>
+                                    </td>
                                 </tr>
                             )
                         }
