@@ -71,59 +71,66 @@ const MyParcels = () => {
     }
 
     return (
-        <div className="overflow-x-auto">
-            <table className="table table-zebra">
-                {/* head */}
-                <thead>
-                    <tr>
-                        <th>SL No.</th>
-                        <th>Name</th>
-                        <th>Cost</th>
-                        <th>Payment</th>
-                        <th>Delivery Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* dynamic */}
-                    {
-                        parcels.map((parcel, index) =>
-                            <tr key={parcel._id}>
-                                <th>{index + 1}</th>
-                                <td>{parcel.parcelName}</td>
-                                <td>{parcel.cost}</td>
-                                <td>
-                                    {
-                                        parcel.paymentStatus === 'paid' ?
-                                            <span className='text-green-400'>Paid</span>
-                                            :
-                                            <button
-                                                onClick={() => handlePayment(parcel)}
-                                                className="btn btn-sm btn-primary text-secondary">Pay</button>
+        <div className='p-5 md:p-10 space-y-5 bg-white rounded-3xl m-2 md:m-6'>
+            <h2 className='text-4xl font-black text-secondary'>My Parcels : {parcels.length}</h2>
+
+            <div className="overflow-x-auto">
+                <table className="table table-zebra">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th>SL No.</th>
+                            <th>Name</th>
+                            <th>Cost</th>
+                            <th>Payment</th>
+                            <th>Tracking Id</th>
+                            <th>Delivery Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* dynamic */}
+                        {
+                            parcels.map((parcel, index) =>
+                                <tr key={parcel._id}>
+                                    <th>{index + 1}</th>
+                                    <td>{parcel.parcelName}</td>
+                                    <td>{parcel.cost}</td>
+                                    <td>
+                                        {
+                                            parcel.paymentStatus === 'paid' ?
+                                                <span className='text-green-400'>Paid</span>
+                                                :
+                                                <button
+                                                    onClick={() => handlePayment(parcel)}
+                                                    className="btn btn-sm btn-primary text-secondary">Pay</button>
 
 
-                                        // <Link to={`/dashboard/payment/${parcel._id}`}>
-                                        //     <button className="btn btn-sm btn-primary text-secondary">Pay</button>
-                                        // </Link>
-                                    }
-                                </td>
-                                <td>{parcel.deliveryStatus}</td>
-                                <td>
-                                    <button className='btn btn-square hover:bg-primary'><FiEdit></FiEdit></button>
-                                    <button className='btn btn-square hover:bg-primary mx-2'><FaMagnifyingGlass></FaMagnifyingGlass></button>
+                                            // <Link to={`/dashboard/payment/${parcel._id}`}>
+                                            //     <button className="btn btn-sm btn-primary text-secondary">Pay</button>
+                                            // </Link>
+                                        }
+                                    </td>
+                                    <td>{parcel.trackingId}</td>
+                                    <td>{parcel.deliveryStatus}</td>
+                                    <td>
+                                        <button className='btn btn-square hover:bg-primary'><FiEdit></FiEdit></button>
+                                        <button className='btn btn-square hover:bg-primary mx-2'><FaMagnifyingGlass></FaMagnifyingGlass></button>
 
-                                    <button
-                                        onClick={() => handleParcelDelete(parcel._id)}
-                                        className='btn btn-square hover:bg-red-500'>
-                                        <FaTrashCan></FaTrashCan>
-                                    </button>
-                                </td>
-                            </tr>
-                        )
-                    }
+                                        <button
+                                            onClick={() => handleParcelDelete(parcel._id)}
+                                            className='btn btn-square hover:bg-red-500'>
+                                            <FaTrashCan></FaTrashCan>
+                                        </button>
+                                    </td>
+                                </tr>
+                            )
+                        }
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     );
 };

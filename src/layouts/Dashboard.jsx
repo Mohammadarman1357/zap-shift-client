@@ -4,9 +4,11 @@ import { FaCircleUser } from 'react-icons/fa6';
 import { TbTruckDelivery } from 'react-icons/tb';
 import { Link, NavLink, Outlet } from 'react-router';
 import useRole from '../hooks/useRole';
+import { RiEBikeFill } from 'react-icons/ri';
 
 const Dashboard = () => {
     const { role } = useRole();
+
     return (
         <div className="drawer lg:drawer-open max-w-7xl mx-auto bg-[#EAECED]">
             <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -62,6 +64,12 @@ const Dashboard = () => {
                                     <NavLink to="/dashboard/approve-riders" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Approve Riders">
                                         <span><FaMotorcycle></FaMotorcycle></span>
                                         <span className="is-drawer-close:hidden">Approve Riders</span>
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/dashboard/assign-riders" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Assign Riders">
+                                        <span><RiEBikeFill></RiEBikeFill></span>
+                                        <span className="is-drawer-close:hidden">Assign Riders</span>
                                     </NavLink>
                                 </li>
                                 <li>
