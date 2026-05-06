@@ -12,7 +12,7 @@ const AssignedDeliveries = () => {
         queryKey: ['parcels', user.email, 'driver_assigned'],
         queryFn: async () => {
             // await must be dite hbe
-            const res = await axiosSecure.get(`/parcels/rider?riderEmail=${user.email}&deliverStatus=driver_assigned`);
+            const res = await axiosSecure.get(`/parcels/rider?riderEmail=${user.email}&deliveryStatus=driver_assigned`);
             return res.data;
         }
     })
@@ -20,7 +20,10 @@ const AssignedDeliveries = () => {
     // delivery status update
     const handleDeliveryStatusUpdate = (parcel, status) => {
 
-        const statusInfo = { deliveryStatus: status };
+        const statusInfo = {
+            deliveryStatus: status,
+            riderId: parcel.riderId
+        };
 
         let message = `Parcel status updated with ${status.split('_').join(' ')}`;
 
