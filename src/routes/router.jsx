@@ -18,6 +18,7 @@ import ApproveRiders from "../pages/Dashboard/ApproveRiders/ApproveRiders";
 import UsersManagement from "../pages/Dashboard/UsersManagement/UsersManagement";
 import AdminRoute from "./AdminRoute";
 import AssignRiders from "../pages/Dashboard/AssignRiders/AssignRiders";
+import AssignedDeliveries from "../pages/Dashboard/AssignedDeliveries/AssignedDeliveries";
 
 export const router = createBrowserRouter([
     {
@@ -85,6 +86,15 @@ export const router = createBrowserRouter([
                 path: 'payment-history',
                 Component: PaymentHistory
             },
+
+            // rider only routes
+            {
+                path: 'assigned-deliveries',
+                element: <AssignedDeliveries></AssignedDeliveries>
+
+            },
+
+            // admin only routes
             {
                 path: 'approve-riders',
                 element: <AdminRoute><ApproveRiders></ApproveRiders></AdminRoute>
