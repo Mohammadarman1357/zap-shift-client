@@ -9,7 +9,7 @@ const AssignRiders = () => {
     const riderModalRef = useRef();
 
 
-    // data load
+    // data load . set deliveryStatus
     const { data: parcels = [], refetch: parcelRefetch } = useQuery({
         queryKey: ['parcels', 'pending-pickup'],
         queryFn: async () => {

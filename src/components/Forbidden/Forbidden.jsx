@@ -1,7 +1,11 @@
 import forbiddenAnimation from "../../assets/json/forbidden.json";
 import { Link } from "react-router";
 import React from 'react';
-import Lottie from "react-lottie";
+import LottieComponent from "react-lottie";
+
+// If LottieComponent is an object, use .default, otherwise use it directly
+const Lottie = LottieComponent.default || LottieComponent;
+// problem solve here
 
 const Forbidden = () => {
     return (

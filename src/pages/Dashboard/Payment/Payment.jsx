@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useParams } from 'react-router';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import Loading from '../../Shared/Loading/Loading';
+import Loading from '../../../components/Loading/Loading';
 
 const Payment = () => {
     const { parcelId } = useParams();

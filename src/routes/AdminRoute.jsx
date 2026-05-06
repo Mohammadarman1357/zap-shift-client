@@ -1,6 +1,6 @@
 import React from 'react';
 import useAuth from '../hooks/useAuth';
-import Loading from '../pages/Shared/Loading/Loading';
+import Loading from '../components/Loading/Loading';
 import useRole from '../hooks/useRole';
 import Forbidden from '../components/Forbidden/Forbidden';
 
@@ -13,8 +13,8 @@ const AdminRoute = ({ children }) => {
     }
 
     if (role !== 'admin') {
-        return <h2>forbidden access</h2>
-        // return <Forbidden></Forbidden>;
+        // return <h2>forbidden access</h2>
+        return <Forbidden></Forbidden>;
     }
     return children;
 };
