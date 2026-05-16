@@ -4,6 +4,10 @@ Welcome to **Zap Shift Resources**!
 A curated collection of tools, guides, and assets for developing robust parcel management systems.
 
 ---
+## 🔗 Live Links & Repositories
+
+*	Live Site: https://zap-shift-c1048.web.app
+---
 
 ## 📊 System Overview Table
 
