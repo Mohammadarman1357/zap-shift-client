@@ -311,8 +311,6 @@ The project is designed around modern web application development principles.
 - Responsive web application development.
 - Deployment and production hosting.
 
-> Note: Add the exact frontend, backend, database, authentication, and payment technologies used in your implementation here to make the technical stack fully verifiable.
-
 ---
 
 ## 🌍 Service Coverage
