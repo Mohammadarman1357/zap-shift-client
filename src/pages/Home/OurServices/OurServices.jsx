@@ -1,8 +1,18 @@
-import React from 'react';
-import serviceData from '../../../../public/json/services.json';
+import React, { useEffect, useState } from 'react';
+// import serviceData from '../../../../json/services.json';
 import serviceImg from '../../../assets/images/service.png';
 
 const OurServices = () => {
+
+        const [serviceData, setServiceData] = useState([]); 
+        
+        useEffect(() => {
+            fetch('/json/services.json')
+                .then((res) => res.json())
+                .then((data) => setServiceData(data))
+                .catch((err) => console.error("Error loading json data:", err));
+        }, []);
+
     return (
         <div className='bg-secondary rounded-4xl p-15 text-center space-y-4'>
             <h2 className='text-white text-4xl font-bold'>Our Services</h2>

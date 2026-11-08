@@ -22,6 +22,7 @@ import AssignedDeliveries from "../pages/Dashboard/AssignedDeliveries/AssignedDe
 import RiderRoute from "./RiderRoute";
 import CompletedDeliveries from "../pages/Dashboard/CompletedDeliveries/CompletedDeliveries";
 import ParcelTrack from "../pages/ParcelTrack/ParcelTrack";
+import DashboardHome from "../pages/Dashboard/DashboardHome/DashboardHome";
 
 export const router = createBrowserRouter([
     {
@@ -35,22 +36,22 @@ export const router = createBrowserRouter([
             {
                 path: 'rider',
                 element: <PrivateRoute><Rider></Rider></PrivateRoute>,
-                loader: () => fetch('/public/json/serviceCenters.json').then(res => res.json())
+                loader: () => fetch('/json/serviceCenters.json').then(res => res.json())
             },
             {
                 path: '/sendParcel',
                 element: <PrivateRoute><SendParcel></SendParcel></PrivateRoute>,
-                loader: () => fetch('/public/json/serviceCenters.json').then(res => res.json())
+                loader: () => fetch('/json/serviceCenters.json').then(res => res.json())
 
             },
             {
                 path: 'coverage',
                 Component: Coverage,
-                loader: () => fetch('/public/json/serviceCenters.json').then(res => res.json())
+                loader: () => fetch('/json/serviceCenters.json').then(res => res.json())
             },
             {
-                path:'parcel-track/:trackingId',
-                Component:ParcelTrack
+                path: 'parcel-track/:trackingId',
+                Component: ParcelTrack
             }
         ]
     },
@@ -72,6 +73,10 @@ export const router = createBrowserRouter([
         path: 'dashboard',
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
+            {
+                index: true,
+                Component: DashboardHome
+            },
             {
                 path: 'my-parcels',
                 Component: MyParcels
@@ -101,8 +106,8 @@ export const router = createBrowserRouter([
 
             },
             {
-                path:'completed-deliveries',
-                element:<RiderRoute><CompletedDeliveries></CompletedDeliveries></RiderRoute>
+                path: 'completed-deliveries',
+                element: <RiderRoute><CompletedDeliveries></CompletedDeliveries></RiderRoute>
             },
 
             // admin only routes

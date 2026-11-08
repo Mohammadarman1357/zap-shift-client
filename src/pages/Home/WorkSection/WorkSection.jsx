@@ -1,9 +1,19 @@
-import React from 'react';
-import data from '../../../../public/json/data.json';
+import React, { useEffect, useState } from 'react';
+// import data from '../../../../json/data.json';
 
 import bookingImg from '../../../assets/images/bookingIcon.png';
 
 const WorkSection = () => {
+
+    const [data, setData] = useState([]); 
+    
+    useEffect(() => {
+        fetch('/json/data.json')
+            .then((res) => res.json())
+            .then((data) => setData(data))
+            .catch((err) => console.error("Error loading json data:", err));
+    }, []);
+
     return (
         <div className='p-4'>
             <h2 className='font-bold text-3xl text-secondary mb-4'>How it Works</h2>

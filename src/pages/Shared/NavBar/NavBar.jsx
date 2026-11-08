@@ -18,13 +18,16 @@ const NavBar = () => {
 
     const links = <>
         <li><NavLink to={""} className={'text-[#606060] font-medium'}>Services</NavLink></li>
-        <li><NavLink to="coverage" className={'text-[#606060] font-medium'}>Coverage</NavLink></li>
-        <li><NavLink to={""} className={'text-[#606060] font-medium'}>About Us</NavLink></li>
-        <li><NavLink to={""} className={'text-[#606060] font-medium'}>Pricing</NavLink></li>
+        <li><NavLink to="coverage" className={'text-[#606060] font-medium'}>Coverage Areas</NavLink></li>
+        {/* <li><NavLink to={""} className={'text-[#606060] font-medium'}>Pricing</NavLink></li> */}
         <li><NavLink to={"/sendParcel"} className={'text-[#606060] font-medium'}>Send Parcel</NavLink></li>
         {
-            user && <li><NavLink to={"/dashboard/my-parcels"} className={'text-[#606060] font-medium'}>My Parcels</NavLink></li>
+            user && <>
+                <li><NavLink to={"/dashboard/my-parcels"} className={'text-[#606060] font-medium'}>My Parcels</NavLink></li>
+                <li><NavLink to={"/dashboard"} className={'text-[#606060] font-medium'}>Dashboard</NavLink></li>
+            </>
         }
+        <li><NavLink to={""} className={'text-[#606060] font-medium'}>About Us</NavLink></li>
     </>
     return (
         <div className="navbar bg-base-100 shadow-sm md:py-5 md:px-6 rounded-br-2xl rounded-bl-2xl">

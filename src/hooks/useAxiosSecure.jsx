@@ -4,7 +4,7 @@ import useAuth from './useAuth';
 import { useNavigate } from 'react-router';
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000' // do not put '/' into last. remember it.
+    baseURL: 'https://zapshiftarman.vercel.app' // do not put '/' into last. remember it.
 })
 
 const useAxiosSecure = () => {
@@ -24,7 +24,7 @@ const useAxiosSecure = () => {
         }, (error) => {
             console.log(error);
 
-            const statusCode = error.status;
+            const statusCode = error.response?.status;
             if (statusCode === 401 || statusCode === 403) {
                 logOut()
                     .then(() => {
